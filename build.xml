@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="mavenssh" basedir="." default="automatic">
+
+	<property name="maven" value="\'F:\dev\apache-maven-2.2.1\bin\mvn.bat\'" />
+
+	<target name="clean" description="clean project">
+		<exec dir="." command="${maven}">
+			<arg value="clean" />
+		</exec>
+	</target>
+
+	<target name="package" description="package project">
+		<exec dir="." command="${maven}">
+			<arg value="package" />
+		</exec>
+	</target>
+
+	<target name="move" description="move">
+		<copy file="D:\workspace\Jeecg3.3.2\target\Jeecg3.3.2-0.0.1-SNAPSHOT.war"
+			todir="F:\dev\Tomcat 6.0\webapps" />
+	</target>
+
+	<target name="start_tomcat">
+		<echo message="start_tomcat" />
+		<exec executable="F:\dev\Tomcat 6.0\bin\tomcat6.exe" failonerror="false">
+		</exec>
+	</target>
+
+	<target name="automatic" depends="package,move,start_tomcat"
+		description="do_lifecycle_of_project"></target>
+
+</project>
+
